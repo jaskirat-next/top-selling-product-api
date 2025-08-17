@@ -1,6 +1,7 @@
 import express, { urlencoded } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import route from "./routes/product.route.js";
 
 const app = express();
 dotenv.config();
@@ -9,6 +10,8 @@ app.use(urlencoded({urlencoded: true}))
 
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
+
+app.use('/product', route)
 
 mongoose.connect(MONGO_URI).then( () =>  {
     console.log("Database connected successfully");
